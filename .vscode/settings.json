@@ -26,8 +26,13 @@
         "cSpell.showStatus": false,
         "cSpell.words": [
                 "acro",
+                "ASTM",
+                "Bresciani",
+                "esc",
+                "ESCS",
+                "Mathieu",
                 "nuttx",
-                "esc"
+                "TTRI"
         ],
         "debug.toolBarLocation": "docked",
         "editor.defaultFormatter": "chiehyu.vscode-astyle",
