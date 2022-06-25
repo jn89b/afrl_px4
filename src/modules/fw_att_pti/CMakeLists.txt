@@ -30,11 +30,20 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 ############################################################################
+add_subdirectory(flight_test_input)
+
 px4_add_module(
-	MODULE examples__px4_simple_app
-	MAIN px4_simple_app
-	STACK_MAIN 2000
+	MODULE modules__fw_att_pti
+	MAIN fw_att_pti
 	SRCS
-		px4_simple_app.c
+		FixedWingPTI.cpp
+		FixedWingPTI.hpp
+		ecl_controller.cpp
+		ecl_pitch_controller.cpp
+		ecl_roll_controller.cpp
+		ecl_wheel_controller.cpp
+		ecl_yaw_controller.cpp
 	DEPENDS
+		px4_work_queue
+		FlightTestInput
 	)

@@ -42,6 +42,7 @@
  * @author Lorenz Meier <lm@inf.ethz.ch>
  */
 
+
 #include "params.h"
 
 #include <poll.h>
@@ -252,7 +253,6 @@ int fixedwing_control_thread_main(int argc, char *argv[])
 	parameters_init(&ph);
 	parameters_update(&ph, &p);
 
-
 	/*
 	 * PX4 uses a publish/subscribe design pattern to enable
 	 * multi-threaded communication.
@@ -269,15 +269,13 @@ int fixedwing_control_thread_main(int argc, char *argv[])
 	 *
 	 */
 
-
-
-
 	/*
 	 * Declare and safely initialize all structs to zero.
 	 *
 	 * These structs contain the system state and things
 	 * like attitude, position, the current waypoint, etc.
 	 */
+
 	struct vehicle_attitude_s att;
 	memset(&att, 0, sizeof(att));
 	struct vehicle_attitude_setpoint_s att_sp;

@@ -70,6 +70,7 @@
 #include <uORB/topics/vehicle_status.h>
 #include <uORB/topics/vehicle_thrust_setpoint.h>
 #include <uORB/topics/vehicle_torque_setpoint.h>
+#include "FlightTestInput.hpp"
 
 using matrix::Eulerf;
 using matrix::Quatf;
@@ -78,12 +79,12 @@ using uORB::SubscriptionData;
 
 using namespace time_literals;
 
-class FixedwingAttitudeControl final : public ModuleBase<FixedwingAttitudeControl>, public ModuleParams,
+class FixedWingPTI final : public ModuleBase<FixedWingPTI>, public ModuleParams,
 	public px4::WorkItem
 {
 public:
-	FixedwingAttitudeControl(bool vtol = false);
-	~FixedwingAttitudeControl() override;
+	FixedWingPTI(bool vtol = false);
+	~FixedWingPTI() override;
 
 	/** @see ModuleBase */
 	static int task_spawn(int argc, char *argv[]);
@@ -97,6 +98,9 @@ public:
 	bool init();
 
 private:
+	//added injection cast here
+	FlightTestInput _flight_test_input;
+
 	void Run() override;
 
 	void publishTorqueSetpoint(const hrt_abstime &timestamp_sample);
@@ -156,6 +160,118 @@ private:
 	float _control_energy[4] {};
 	float _control_prev[3] {};
 
+	// /*struct to store information of parameters need to find and get*/
+	// struct {
+	// 	float p_tc;
+	// 	float p_p;
+	// 	float p_i;
+	// 	float p_ff;
+	// 	float p_rmax_pos;
+	// 	float p_rmax_neg;
+	// 	int32_t p_rmax_lim_en;
+	// 	float p_integrator_max;
+	// 	float r_tc;
+	// 	float r_p;
+	// 	float r_i;
+	// 	float r_ff;
+	// 	float r_integrator_max;
+	// 	float r_rmax;
+	// 	float y_p;
+	// 	float y_i;
+	// 	float y_d;
+	// 	float y_ff;
+	// 	float y_integrator_max;
+	// 	float y_coordinated_min_speed;
+	// 	int32_t y_coordinated_method;
+	// 	float y_rmax;
+	// 	float w_p;
+	// 	float w_i;
+	// 	float w_ff;
+	// 	float w_integrator_max;
+	// 	float w_rmax;
+
+	// 	float airspeed_min;
+	// 	float airspeed_trim;
+	// 	float airspeed_max;
+	// 	float airspeed_gain_scl;
+	// 	float airspeed_rollgain_scl;
+
+	// 	float thr_to_elevator_ff;
+	// 	float throttle_cruise;
+
+	// 	float trim_roll;
+	// 	float trim_pitch;
+	// 	float trim_yaw;
+	// 	float rollsp_offset_deg;		/**< Roll Setpoint Offset in deg */
+	// 	float pitchsp_offset_deg;		/**< Pitch Setpoint Offset in deg */
+	// 	float rollsp_offset_rad;		/**< Roll Setpoint Offset in rad */
+	// 	float pitchsp_offset_rad;		/**< Pitch Setpoint Offset in rad */
+	// 	float man_roll_max;				/**< Max Roll in rad */
+	// 	float man_pitch_max;			/**< Max Pitch in rad */
+
+	// 	float flaps_scale;				/**< Scale factor for flaps */
+	// 	float flaperon_scale;			/**< Scale factor for flaperons */
+
+	// 	int vtol_type;					/**< VTOL type: 0 = tailsitter, 1 = tiltrotor */
+
+	// }		_parameters;			/**< local copies of interesting parameters */
+
+
+	/**< handles for parameter inputs of aircraft */
+	// struct {
+
+	// 	param_t p_tc;
+	// 	param_t p_p;
+	// 	param_t p_i;
+	// 	param_t p_ff;
+	// 	param_t p_rmax_pos;
+	// 	param_t p_rmax_neg;
+	// 	param_t p_rmax_lim_en;
+	// 	param_t p_integrator_max;
+	// 	param_t r_tc;
+	// 	param_t r_p;
+	// 	param_t r_i;
+	// 	param_t r_ff;
+	// 	param_t r_integrator_max;
+	// 	param_t r_rmax;
+	// 	param_t y_p;
+	// 	param_t y_i;
+	// 	param_t y_d;
+	// 	param_t y_ff;
+	// 	param_t y_integrator_max;
+	// 	param_t y_coordinated_min_speed;
+	// 	param_t y_coordinated_method;
+	// 	param_t y_rmax;
+	// 	param_t w_p;
+	// 	param_t w_i;
+	// 	param_t w_ff;
+	// 	param_t w_integrator_max;
+	// 	param_t w_rmax;
+
+	// 	param_t airspeed_min;
+	// 	param_t airspeed_trim;
+	// 	param_t airspeed_max;
+	// 	param_t airspeed_gain_scl;
+	// 	param_t airspeed_rollgain_scl;
+
+	// 	param_t thr_to_elevator_ff;
+	// 	param_t throttle_cruise;
+
+	// 	param_t trim_roll;
+	// 	param_t trim_pitch;
+	// 	param_t trim_yaw;
+	// 	param_t rollsp_offset_deg;
+	// 	param_t pitchsp_offset_deg;
+	// 	param_t man_roll_max;
+	// 	param_t man_pitch_max;
+
+	// 	param_t flaps_scale;
+	// 	param_t flaperon_scale;
+
+	// 	param_t vtol_type;
+
+	// }		_parameter_handles;
+
 	DEFINE_PARAMETERS(
 		(ParamFloat<px4::params::FW_ACRO_X_MAX>) _param_fw_acro_x_max,
 		(ParamFloat<px4::params::FW_ACRO_Y_MAX>) _param_fw_acro_y_max,
@@ -168,7 +284,7 @@ private:
 
 		(ParamInt<px4::params::FW_ARSP_SCALE_EN>) _param_fw_arsp_scale_en,
 
-		(ParamInt<px4::params::FW_BAT_SCALE_EN>) _param_fw_bat_scale_en,
+		(ParamBool<px4::params::FW_BAT_SCALE_EN>) _param_fw_bat_scale_en,
 
 		(ParamFloat<px4::params::FW_DTRIM_P_FLPS>) _param_fw_dtrim_p_flps,
 		(ParamFloat<px4::params::FW_DTRIM_P_VMAX>) _param_fw_dtrim_p_vmax,
