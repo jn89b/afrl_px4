@@ -426,6 +426,23 @@ void FixedWingPTI::Run()
 			/* Prepare data for attitude controllers */
 			ECL_ControlData control_input{};
 
+
+			// PX4_INFO("Old:\t%8.4f\t%8.4f\t%8.4f",
+			// 		 (double)_att_sp.roll_body,
+			// 		 (double)_att_sp.pitch_body,
+			// 		 (double)_att_sp.yaw_body);
+
+			//injection WRAP THIS AS A FUNCTION OR SOME SHIT
+			_att_sp.roll_body = _flight_test_input.inject(7, _att_sp.roll_body);
+			_att_sp.pitch_body = _flight_test_input.inject(8, _att_sp.pitch_body);
+			_att_sp.yaw_body = _flight_test_input.inject(9, _att_sp.yaw_body);
+
+
+			// PX4_INFO("New:\t%8.4f\t%8.4f\t%8.4f",
+			// 		 (double)_att_sp.roll_body,
+			// 		 (double)_att_sp.pitch_body,
+			// 		 (double)_att_sp.yaw_body);
+
 			control_input.roll = euler_angles.phi();
 			control_input.pitch = euler_angles.theta();
 			control_input.yaw = euler_angles.psi();

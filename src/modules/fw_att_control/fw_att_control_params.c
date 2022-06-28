@@ -430,6 +430,22 @@ PARAM_DEFINE_FLOAT(FW_WR_FF, 0.2f);
 PARAM_DEFINE_FLOAT(FW_PSP_OFF, 0.0f);
 
 /**
+ * ROll setpoint offset (roll at level flight)
+ *
+ * An airframe specific offset of the roll setpoint in degrees, the value is
+ * added to the pitch setpoint and should correspond to the roll at
+ * typical cruise speed of the airframe.
+ *
+ * @unit deg
+ * @min -90.0
+ * @max 90.0
+ * @decimal 1
+ * @increment 0.5
+ * @group FW Attitude Control
+ */
+PARAM_DEFINE_FLOAT(FW_RSP_OFF, 0.0f);
+
+/**
  * Max manual roll
  *
  * Max roll for manual control in attitude stabilized mode
@@ -550,6 +566,8 @@ PARAM_DEFINE_INT32(FW_ARSP_SCALE_EN, 1);
  * @group FW Attitude Control
  */
 PARAM_DEFINE_FLOAT(FW_MAN_R_SC, 1.0f);
+
+
 
 /**
  * Manual pitch scale
