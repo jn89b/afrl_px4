@@ -70,6 +70,8 @@
 #include <uORB/topics/vehicle_status.h>
 #include <uORB/topics/vehicle_thrust_setpoint.h>
 #include <uORB/topics/vehicle_torque_setpoint.h>
+#include "FlightTestInput.hpp"
+
 
 using matrix::Eulerf;
 using matrix::Quatf;
@@ -97,6 +99,9 @@ public:
 	bool init();
 
 private:
+	//added injection cast here
+	FlightTestInput _flight_test_input;
+
 	void Run() override;
 
 	void publishTorqueSetpoint(const hrt_abstime &timestamp_sample);

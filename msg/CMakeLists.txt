@@ -79,6 +79,7 @@ set(msg_files
 	event.msg
 	follow_target.msg
 	failure_detector_status.msg
+	flight_test_input.msg
 	generator_status.msg
 	geofence_result.msg
 	gimbal_device_attitude_status.msg
