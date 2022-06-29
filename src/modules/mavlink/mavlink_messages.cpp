@@ -52,6 +52,8 @@
 #include <px4_platform_common/time.h>
 #include <math.h>
 
+
+#include <uORB/topics/flight_test_input.h>
 #include <uORB/Subscription.hpp>
 #include <uORB/SubscriptionMultiArray.hpp>
 #include <uORB/topics/vehicle_status.h>
@@ -76,6 +78,7 @@
 #include "streams/ESTIMATOR_STATUS.hpp"
 #include "streams/EXTENDED_SYS_STATE.hpp"
 #include "streams/FLIGHT_INFORMATION.hpp"
+#include "streams/FLIGHT_TEST_INPUT.hpp"
 #include "streams/GLOBAL_POSITION_INT.hpp"
 #include "streams/GPS_GLOBAL_ORIGIN.hpp"
 #include "streams/GPS_RAW_INT.hpp"
@@ -550,8 +553,11 @@ static const StreamListItem streams_list[] = {
 	create_stream_list_item<MavlinkStreamEfiStatus>(),
 #endif // EFI_STATUS_HPP
 #if defined(GPS_RTCM_DATA_HPP)
-	create_stream_list_item<MavlinkStreamGPSRTCMData>()
+	create_stream_list_item<MavlinkStreamGPSRTCMData>(),
 #endif // GPS_RTCM_DATA_HPP
+#if defined(FLIGHT_TEST_INPUT_HPP)
+	create_stream_list_item<MavlinkStreamFlightTestInput>()
+#endif // FLIGHT_TEST_INPUT_HPP
 };
 
 const char *get_stream_name(const uint16_t msg_id)

@@ -153,5 +153,9 @@
         "yaml.schemas": {
                 "${workspaceFolder}/validation/module_schema.yaml": "${workspaceFolder}/src/modules/*/module.yaml"
         },
-        "cortex-debug.openocdPath": "${env:PICO_SDK_PATH}/../openocd/src/openocd"       // Added for rp2040
+        "cortex-debug.openocdPath": "${env:PICO_SDK_PATH}/../openocd/src/openocd",
+        "python.autoComplete.extraPaths": [
+                "/home/justin/catkin_ws/devel/lib/python3/dist-packages",
+                "/opt/ros/noetic/lib/python3/dist-packages"
+        ] // Added for rp2040
 }
