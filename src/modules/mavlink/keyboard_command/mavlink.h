@@ -1,12 +1,12 @@
 /** @file
- *  @brief MAVLink comm protocol built from flight_test_input.xml
+ *  @brief MAVLink comm protocol built from keyboard_command.xml
  *  @see http://mavlink.org
  */
 #pragma once
 #ifndef MAVLINK_H
 #define MAVLINK_H
 
-#define MAVLINK_PRIMARY_XML_HASH -3668666614520086702
+#define MAVLINK_PRIMARY_XML_HASH -604214291777802390
 
 #ifndef MAVLINK_STX
 #define MAVLINK_STX 253
@@ -29,6 +29,6 @@
 #endif
 
 #include "version.h"
-#include "flight_test_input.h"
+#include "keyboard_command.h"
 
 #endif // MAVLINK_H

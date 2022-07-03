@@ -57,6 +57,7 @@
 #include <uORB/Subscription.hpp>
 #include <uORB/SubscriptionMultiArray.hpp>
 #include <uORB/topics/vehicle_status.h>
+#include <uORB/topics/video_monitor.h>
 
 #include "streams/ACTUATOR_CONTROL_TARGET.hpp"
 #include "streams/ACTUATOR_OUTPUT_STATUS.hpp"
@@ -117,6 +118,7 @@
 #include "streams/TIMESYNC.hpp"
 #include "streams/TRAJECTORY_REPRESENTATION_WAYPOINTS.hpp"
 #include "streams/VFR_HUD.hpp"
+#include "streams/VIDEO_MONITOR.hpp"
 #include "streams/VIBRATION.hpp"
 #include "streams/WIND_COV.hpp"
 
@@ -555,6 +557,9 @@ static const StreamListItem streams_list[] = {
 #if defined(GPS_RTCM_DATA_HPP)
 	create_stream_list_item<MavlinkStreamGPSRTCMData>(),
 #endif // GPS_RTCM_DATA_HPP
+#if defined(VIDEO_MON_HPP)
+	create_stream_list_item<MavlinkStreamFlightTestInput>(),
+#endif // VIDEO_MON_HPP
 #if defined(FLIGHT_TEST_INPUT_HPP)
 	create_stream_list_item<MavlinkStreamFlightTestInput>()
 #endif // FLIGHT_TEST_INPUT_HPP

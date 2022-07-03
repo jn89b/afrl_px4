@@ -36,7 +36,8 @@
 
 #include <uORB/topics/flight_test_input.h>
 // #include "flight_test_input/mavlink.h"
-#include "flight_test_input/flight_test_input.h"
+// include "flight_test_input/flight_test_input.h"
+#include "flight_test_input/mavlink_msg_flight_test_input.h"
 
 class MavlinkStreamFlightTestInput : public MavlinkStream
 {
@@ -62,11 +63,13 @@ private:
 
     bool send() override
     {
-        flight_test_input_s _flight_test_input{};  //make sure ca_traj_struct_s is the definition of your uORB topic
+
+        struct flight_test_input_s _flight_test_input;  //make sure ca_traj_struct_s is the definition of your uORB topic
+        _flight_test_input = {};
 
         if (_flight_test_input_sub.update(&_flight_test_input))
 	{
-            mavlink_flight_test_input_t _msg_flight_test_input;  //make sure mavlink_ca_trajectory_t is the definition of your custom MAVLink message
+            __mavlink_flight_test_input_t _msg_flight_test_input;  //make sure mavlink_ca_trajectory_t is the definition of your custom MAVLink message
 
             _msg_flight_test_input.timestamp = _flight_test_input.timestamp;
             _msg_flight_test_input.fti_mode = _flight_test_input.mode;
@@ -81,12 +84,15 @@ private:
             _msg_flight_test_input.fti_raw_output = _flight_test_input.raw_output;
             _msg_flight_test_input.fti_injection_point = _flight_test_input.injection_point;
 
+            // double val = _msg_flight_test_input.fti_injection_point;
 
             mavlink_msg_flight_test_input_send_struct(_mavlink->get_channel(), &_msg_flight_test_input);
 
+            // PX4_WARN("Accelerometer:\t%.6f", val);
             return true;
         }
 
+        // PX4_WARN("no bueno!!!!");
         return false;
     }
 };

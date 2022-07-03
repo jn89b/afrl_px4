@@ -1,6 +1,6 @@
 uint64 timestamp # time since system start (microseconds)
 
-uint32 mode # for ACTION_SWITCH_MODE what mode is requested according to commander_state.MAIN_STATE_
+uint32 mode 
 uint32 state
 
 float32 sweep_time_segment_pct # sweep time frequency percentage

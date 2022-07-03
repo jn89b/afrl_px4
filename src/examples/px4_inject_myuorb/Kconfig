@@ -1,0 +1,5 @@
+menuconfig EXAMPLES_PX4_INJECT_MYUORB
+	bool "px4_inject_myuorb"
+	default n
+	---help---
+		Enable support for px4_inject_myuorb

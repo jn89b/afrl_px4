@@ -43,6 +43,7 @@
 #include <lib/airspeed/airspeed.h>
 #include <lib/conversion/rotation.h>
 #include <lib/systemlib/px4_macros.h>
+// #include "keyboard_command/mavlink_msg_key_command.h"
 
 #include <math.h>
 #include <poll.h>
@@ -266,6 +267,13 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 	case MAVLINK_MSG_ID_STATUSTEXT:
 		handle_message_statustext(msg);
 		break;
+
+	// case MAVLINK_MSG_ID_KEY_COMMAND:
+	// 	handle_message_key_command(msg);
+	// 	break;
+	// case MAVLINK_MSG_ID_FLIGHT_TEST_INPUT:
+	// 	handle_message_flight_test_input(msg);
+	// 	break;
 
 #if !defined(CONSTRAINED_FLASH)
 
@@ -2838,6 +2846,26 @@ MavlinkReceiver::handle_message_debug_vect(mavlink_message_t *msg)
 
 	_debug_vect_pub.publish(debug_topic);
 }
+
+
+// void
+// MavlinkReceiver::handle_message_key_command(mavlink_message_t *msg)
+// {
+//     mavlink_key_command_t man;
+//     mavlink_msg_key_command_decode(msg, &man);
+
+//     struct key_command_s key = {};
+
+//     key.timestamp = hrt_absolute_time();
+//     key.cmd = man.command;
+
+//     if (_key_command_pub == nullptr) {
+//         _key_command_pub = orb_advertise(ORB_ID(key_command), &key);
+
+//     } else {
+//         orb_publish(ORB_ID(key_command), _key_command_pub, &key);
+//     }
+// }
 
 void
 MavlinkReceiver::handle_message_debug_float_array(mavlink_message_t *msg)

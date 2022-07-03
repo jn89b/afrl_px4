@@ -1,5 +1,5 @@
 /** @file
- *  @brief MAVLink comm protocol built from flight_test_input.xml
+ *  @brief MAVLink comm protocol built from video_monitor.xml
  *  @see http://mavlink.org
  */
 #pragma once
@@ -7,7 +7,7 @@
 #ifndef MAVLINK_VERSION_H
 #define MAVLINK_VERSION_H
 
-#define MAVLINK_BUILD_DATE "Fri Jul 01 2022"
+#define MAVLINK_BUILD_DATE "Sat Jul 02 2022"
 #define MAVLINK_WIRE_PROTOCOL_VERSION "2.0"
 #define MAVLINK_MAX_DIALECT_PAYLOAD_SIZE 255
  

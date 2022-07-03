@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE FLIGHT_TEST_INPUT PACKING
 
-#define MAVLINK_MSG_ID_FLIGHT_TEST_INPUT 64015
+#define MAVLINK_MSG_ID_FLIGHT_TEST_INPUT 229
 
 
 typedef struct __mavlink_flight_test_input_t {
@@ -19,17 +19,17 @@ typedef struct __mavlink_flight_test_input_t {
 
 #define MAVLINK_MSG_ID_FLIGHT_TEST_INPUT_LEN 44
 #define MAVLINK_MSG_ID_FLIGHT_TEST_INPUT_MIN_LEN 44
-#define MAVLINK_MSG_ID_64015_LEN 44
-#define MAVLINK_MSG_ID_64015_MIN_LEN 44
+#define MAVLINK_MSG_ID_229_LEN 44
+#define MAVLINK_MSG_ID_229_MIN_LEN 44
 
 #define MAVLINK_MSG_ID_FLIGHT_TEST_INPUT_CRC 181
-#define MAVLINK_MSG_ID_64015_CRC 181
+#define MAVLINK_MSG_ID_229_CRC 181
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_FLIGHT_TEST_INPUT { \
-    64015, \
+    229, \
     "FLIGHT_TEST_INPUT", \
     10, \
     {  { "timestamp", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_flight_test_input_t, timestamp) }, \

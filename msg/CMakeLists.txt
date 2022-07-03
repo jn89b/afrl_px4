@@ -98,6 +98,7 @@ set(msg_files
 	input_rc.msg
 	iridiumsbd_status.msg
 	irlock_report.msg
+	key_command.msg
 	landing_gear.msg
 	landing_target_innovations.msg
 	landing_target_pose.msg
@@ -195,6 +196,7 @@ set(msg_files
 	vehicle_torque_setpoint.msg
 	vehicle_trajectory_bezier.msg
 	vehicle_trajectory_waypoint.msg
+	video_monitor.msg
 	vtol_vehicle_status.msg
 	wheel_encoders.msg
 	wind.msg
