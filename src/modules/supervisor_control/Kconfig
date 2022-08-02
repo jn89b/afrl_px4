@@ -1,0 +1,5 @@
+menuconfig MODULES_SUPERVISOR_CONTROL
+	bool "supervisor_control"
+	default n
+	---help---
+		Enable support for supervisor_control

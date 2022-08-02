@@ -227,7 +227,14 @@ private:
 
 		(ParamFloat<px4::params::TRIM_PITCH>) _param_trim_pitch,
 		(ParamFloat<px4::params::TRIM_ROLL>) _param_trim_roll,
-		(ParamFloat<px4::params::TRIM_YAW>) _param_trim_yaw
+		(ParamFloat<px4::params::TRIM_YAW>) _param_trim_yaw,
+
+		(ParamFloat<px4::params::MAX_PITCH>) _param_max_pitch,
+		(ParamFloat<px4::params::MAX_PITCH_RATE>) _param_max_pitch_rate,
+		(ParamFloat<px4::params::MAX_ROLL>) _param_max_roll,
+		(ParamFloat<px4::params::MAX_ROLL_RATE>) _param_max_roll_rate
+
+
 	)
 
 	ECL_RollController		_roll_ctrl;
