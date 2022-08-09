@@ -1,5 +1,5 @@
 /*
- *  Written by Prioria Robotics 2015
+ *  UMKC FASTLAB
  *  - provides attitude controller frequency injection for the purpose of system identification
  */
 
@@ -46,9 +46,14 @@ private:
 	float _time_running;
 	float _raw_output;
 
+	//fti_loop_gain 
+	float _fti_set_loop_gain;
+	float _loop_gain_default = 1;
+
 	// frequency sweep sine sum
 	float _sweep_sine_input;
 
+	
 	/** parameters **/
 	control::BlockParamInt _mode;
 	control::BlockParamInt _enable;
@@ -61,6 +66,8 @@ private:
 	control::BlockParamFloat _sweep_freq_ramp;
 	control::BlockParamFloat _sweep_amplitude_begin;
 	control::BlockParamFloat _sweep_amplitude_end;
+	control::BlockParamFloat _loop_gain;
+
 
 	// /** doublet parameters **/
 	// control::BlockParamFloat _doublet_pulse_length;

@@ -229,10 +229,10 @@ private:
 		(ParamFloat<px4::params::TRIM_ROLL>) _param_trim_roll,
 		(ParamFloat<px4::params::TRIM_YAW>) _param_trim_yaw,
 
-		(ParamFloat<px4::params::MAX_PITCH>) _param_max_pitch,
-		(ParamFloat<px4::params::MAX_PITCH_RATE>) _param_max_pitch_rate,
-		(ParamFloat<px4::params::MAX_ROLL>) _param_max_roll,
-		(ParamFloat<px4::params::MAX_ROLL_RATE>) _param_max_roll_rate
+		(ParamFloat<px4::params::SC_ROLL_ANG_MAX>) _param_sc_roll_ang_max,
+		(ParamFloat<px4::params::SC_PITCH_ANG_MAX>) _param_sc_pitch_ang_max,
+		(ParamFloat<px4::params::SC_PITCH_RAT_MAX>) _param_sc_pitch_rat_max,
+		(ParamFloat<px4::params::SC_ROLL_RAT_MAX>) _param_sc_roll_rat_max
 
 
 	)

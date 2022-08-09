@@ -53,16 +53,17 @@ PARAM_DEFINE_INT32(FTI_ENABLE, 0);
 //  */
 PARAM_DEFINE_INT32(FTI_INJXN_POINT, 0);
 
-// /**
-//  * Test input frequency sweep duration
-//  *
-//  * Total length of frequency sweep
-//  *
-//  * @unit s
-//  * @min 1.0
-//  * @max 200.0
-//  * @group Flight Test Input
-//  */
+/**
+ * Test input frequency sweep duration
+ *
+ * Total length of frequency sweep
+ *
+ * @unit s
+ * @min 1.0
+ * @max 200.0
+ * @decimal 2
+ * @group Flight Test Input
+ */
 PARAM_DEFINE_FLOAT(FTI_FS_DURATION, 10.0f);
 
 /**
@@ -73,6 +74,7 @@ PARAM_DEFINE_FLOAT(FTI_FS_DURATION, 10.0f);
  * @unit Hz
  * @min 0.01
  * @max 50.0
+ * @decimal 2
  * @group Flight Test Input
  */
 PARAM_DEFINE_FLOAT(FTI_FS_FRQ_BEGIN, 0.1f);
@@ -85,6 +87,7 @@ PARAM_DEFINE_FLOAT(FTI_FS_FRQ_BEGIN, 0.1f);
  * @unit Hz
  * @min 0.01
  * @max 100.0
+ * @decimal 2
  * @group Flight Test Input
  */
 PARAM_DEFINE_FLOAT(FTI_FS_FRQ_END, 3.0f);
@@ -93,7 +96,9 @@ PARAM_DEFINE_FLOAT(FTI_FS_FRQ_END, 3.0f);
  * Test input frequency sweep starting amplitude
  *
  * Start amplitude of sweep
- *
+ * @decimal 2
+ * @group Flight Test Input
+
  */
 PARAM_DEFINE_FLOAT(FTI_FS_AMP_BEGIN, 0.0f);
 
@@ -101,16 +106,28 @@ PARAM_DEFINE_FLOAT(FTI_FS_AMP_BEGIN, 0.0f);
  * Test input frequency sweep ending amplitude
  *
  * End amplitude of sweep
- *
+ * @decimal 2
+ * @group Flight Test Input
  */
 PARAM_DEFINE_FLOAT(FTI_FS_AMP_END, 0.0f);
 
 /**
  * Test input frequency sweep ramp
- *
-
+ * @group Flight Test Input
  */
 PARAM_DEFINE_FLOAT(FTI_FS_FRQ_RAMP, 3.0f);
+
+/**
+ * Test input for FTI Loop gain
+ *
+ * Set Loop gain for FTI.
+ * 
+ * @min 0.5
+ * @max 2
+ * @decimal 2
+ * @group Flight Test Input
+ */
+PARAM_DEFINE_FLOAT(FTI_LOOP_GAIN, 1.0f);
 
 // /**
 //  * Test input doublet pulse length

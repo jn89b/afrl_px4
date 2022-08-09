@@ -28,6 +28,7 @@ FlightTestInput::FlightTestInput() :
 	_sweep_freq_ramp(this, "FS_FRQ_RAMP"),
 	_sweep_amplitude_begin(this, "FS_AMP_BEGIN"),
 	_sweep_amplitude_end(this, "FS_AMP_END"),
+	_loop_gain(this, "LOOP_GAIN"),
 	_main_state(0),
 	_nav_state(0),
 	_vehicle_status_sub(-1),
@@ -39,6 +40,8 @@ FlightTestInput::FlightTestInput() :
 
 	_enable.set(0);
 	_enable.commit();
+	_loop_gain.set(_loop_gain_default);
+	_loop_gain.commit();
 }
 
 FlightTestInput::~FlightTestInput()
@@ -53,6 +56,7 @@ FlightTestInput::update(float dt)
 	commander_state_poll();
 
 	_enable.update();
+	_loop_gain.update();
 
 	switch (_state) {
 	case TEST_INPUT_OFF:
@@ -65,6 +69,7 @@ FlightTestInput::update(float dt)
 
 		if (_enable.get() == 1) {
 			_state = TEST_INPUT_INIT;
+			_fti_set_loop_gain = _loop_gain.get();
 		}
 
 		return;
@@ -133,6 +138,8 @@ FlightTestInput::update(float dt)
 		if (_enable.get() == 0) {
 			mavlink_log_info(&_mavlink_log_pub, "#Flight test input resetting");
 			_state = TEST_INPUT_OFF;
+			_loop_gain.set(_loop_gain_default);
+			_loop_gain.commit();
 		}
 
 		break;
@@ -190,6 +197,8 @@ FlightTestInput::computeSweep(float dt)
 	} else {
 		mavlink_log_info(&_mavlink_log_pub, "#Frequency Sweep complete");
 		_state = TEST_INPUT_COMPLETE;
+		_loop_gain.set(_loop_gain_default);
+		_loop_gain.commit();
 	}
 }
 
@@ -243,9 +252,9 @@ FlightTestInput::inject(const uint8_t injection_point, const float inject_input)
 	if ((_state == TEST_INPUT_RUNNING) && (injection_point == _injection_point.get())) {
 		// update logging
 		_flight_test_input.injection_input = inject_input;
-		_flight_test_input.injection_output = inject_input + _raw_output;
+		_flight_test_input.injection_output = (inject_input*_fti_set_loop_gain) + _raw_output;
 
-		inject_output = inject_input + _raw_output;
+		inject_output = (inject_input*_fti_set_loop_gain) + _raw_output;
 		// double stupid_val = inject_output;
 		// PX4_INFO("Old:%d\t,\t%8.4f", injection_point, double(stupid_val));
 	}

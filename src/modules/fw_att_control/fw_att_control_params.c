@@ -764,7 +764,7 @@ PARAM_DEFINE_FLOAT(FW_DTRIM_P_FLPS, 0.0f);
  * @min 0.0
  * @max 85.0
  */
-PARAM_DEFINE_FLOAT(MAX_ROLL, 45);
+PARAM_DEFINE_FLOAT(SC_PITCH_ANG_MAX, 45);
 
 
 /**
@@ -775,7 +775,7 @@ PARAM_DEFINE_FLOAT(MAX_ROLL, 45);
  * @min 0.0
  * @max 85.0
  */
-PARAM_DEFINE_FLOAT(MAX_PITCH, 45);
+PARAM_DEFINE_FLOAT(SC_ROLL_ANG_MAX, 45);
 
 /**
  * Pitch Rate Constraint
@@ -783,20 +783,21 @@ PARAM_DEFINE_FLOAT(MAX_PITCH, 45);
  * Max Pitch Constraint deg/s.
   * @group FW Attitude Control
  * @min 0.0
- * @max 85.0
+ * @max 360.0
  */
-PARAM_DEFINE_FLOAT(MAX_PITCH_RATE, 45);
+PARAM_DEFINE_FLOAT(SC_PITCH_RAT_MAX, 45);
 
 
 /**
  * Roll Rate Constraint
  *
- * Max Pitch Constraint deg/s.
+ * Max Pitch Rate Constraint deg/s.
   * @group FW Attitude Control
  * @min 0.0
- * @max 85.0
+ * @max 360.0
  */
-PARAM_DEFINE_FLOAT(MAX_ROLL_RATE, 45);
+PARAM_DEFINE_FLOAT(SC_ROLL_RAT_MAX, 45);
+
 
 
 
